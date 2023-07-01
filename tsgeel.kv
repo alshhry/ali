@@ -1,0 +1,295 @@
+#:kivy 1.8.0
+#:import arabic_reshaper arabic_reshaper
+#:import get_display bidi.algorithm.get_display
+
+<tsgeelScreen>
+    
+    emailInput: emailInput
+    #notesInput: notesInput
+    nav_drawer2:nav_drawer2
+    mobilenumInput: mobilenumInput
+    labelmsg:labelmsg
+    progress:progress
+    
+    ch1:ch1
+    ch2:ch2
+    lblpro:lblpro
+    MDScreen:
+ 
+    Screen:           
+        name: "tsgeel"    
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDTopAppBar:
+                title: 'alialshhry.com'
+                anchor_title: "left"
+                padding:10,10
+                font_name:'arial.ttf'
+                left_action_items: [["menu", lambda x:nav_drawer2.set_state("open")  ]]
+                pos_hint:{"center_x":.5,"center_y":.2}
+                right_action_items:
+                    [
+                    ["dots-vertical", lambda x: nav_drawer2.set_state("open")],
+                    ["lock", lambda x: app.callback_close()]
+                    ]
+            MDLabel: 
+          
+        BoxLayout:
+
+            size_hint:None,None
+            size: 320,500
+            pos_hint:{"center_x":.5,"center_y":.5}
+            elevation:1
+            md_bg_color: 255,255,255,1
+            padding: ('20dp', '20dp', '20dp', '20dp')
+            spacing: 5  
+            orientation: 'vertical'  
+            
+            MDLabel:
+                text: get_display(arabic_reshaper.reshape('البريد الالكتروني '))    
+                font_name:'arial.ttf'
+                halign: "center"    
+            MDTextField:
+                id:emailInput
+                # pos_hint: {"center_x": .5, "center_y": .5}
+                #hint_text: "Enter email"
+                # mode: "rectangle"
+                icon_right: "email"
+                icon_left: "email"
+                # color_active: 0, 0, 1, 1
+                # icon_right_color: app.theme_cls.primary_color
+                #             #on_press: app.arab()
+                # font_name:'arial.ttf'
+                #on_text:app.d() 
+            MDLabel:
+                text: get_display(arabic_reshaper.reshape('رقم الجوال '))    
+                font_name:'arial.ttf'
+                halign: "center"                   #text:'علي'
+            BoxLayout:
+                height: "30dp"
+                width:"100dp"
+                size_hint_y: None
+                #pos_hint: {"center_x": .5, "center_y": .5}
+                orientation: "horizontal"            
+                  
+                MDTextField:
+                    id:mobilenumInput
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    #size_hint:0.7, 0.17
+                    #hint_text: "966500000000"
+                    auto_dismiss:True
+                    # #text:'966'
+                    # mode: "rectangle"
+                    icon_right: "phone"
+                    icon_left: "phone"
+                    color_active: 0, 0, 1, 1
+                    text_color: 0, 0, 1, 1
+                    icon_right_color: app.theme_cls.primary_color
+                    #         #on_press: app.arab()
+                    # #font_name:'arial.ttf'
+                    input_type: "number"
+                    #on_text:            #text:'علي'    
+            
+            GridLayout:
+                cols:2
+                md_bg_color:1,0,0,1
+                MDLabel:
+                    text:get_display(arabic_reshaper.reshape('الانضمام إلى دورة python'))
+                    font_name:"arial.ttf" 
+                    halign: "center"    
+              
+                MDCheckbox:
+                    id:ch1
+                    size_hint: None, None
+                    size: "48dp", "48dp"
+                    pos_hint: {'center_x': .5, 'center_y': .5}    
+                 
+            GridLayout:
+                cols:2
+                MDLabel:
+                    text:get_display(arabic_reshaper.reshape('الانضمام إلى دورة Mvc core asp.net'))
+                    font_name:"arial.ttf" 
+                    halign: "center"    
+                #MDCheckbox:
+                 #   id:cpython
+                  #  disabled_color: "lightgrey"
+                   # disabled: True
+                    #active: False
+                MDCheckbox:
+                    id:ch2
+                    size_hint: None, None
+                    size: "48dp", "48dp"
+                    pos_hint: {'center_x': .5, 'center_y': .5}    
+            MDLabel:
+                id:mylabel2 
+                pos_hint: {"center_x": .5, "center_y": .5}
+                text: get_display(arabic_reshaper.reshape('مدى رضاك عن التطبيق'))  
+                font_name:"arial.ttf" 
+                halign: "center"    
+                #text_language:"ar"       
+            BoxLayout:
+                height: "30dp"
+                width:"100dp"
+                size_hint_y: None
+                #pos_hint: {"center_x": .5, "center_y": .5}
+                orientation: "horizontal"        
+                MDProgressBar:
+                    id: progress
+                    #value: .25
+                    min:0
+                    max: 100
+                    size_hint_y: None
+                    height: dp(10)    
+                    halign: "center"    
+                MDLabel:
+                    id:lblpro 
+                    text:''   
+                    font_name:"arial.ttf" 
+                    text_language:"ar"   
+                Button:
+                    text:get_display(arabic_reshaper.reshape(' راضي '))  
+                    font_name:"arial.ttf" 
+                    text_language:"ar"   
+                    on_press:root.addR()  
+
+            MDLabel:
+                id:mylabel 
+                text:''   
+                font_name:"arial.ttf" 
+                text_language:"ar"   
+            MDLabel:
+                id:labelmsg 
+                text:''   
+                font_name:"arial.ttf" 
+                text_language:"ar"   
+
+            MDRectangleFlatButton:
+                text:get_display(arabic_reshaper.reshape(' ارسل رأيك '))   
+                font_name:'arial.ttf'
+                halign: "center"  
+                            #text_color: 1, 1, 1, 1
+                            #md_bg_color: 1, 1, 0, 1     
+                pos_hint: {"center_x": .5, "center_y": .5}
+                #on_press: root.on_text_validate()
+                on_press: 
+                    root.addtsgeel()  
+                    #root.register()
+                    #root.sent()
+                    #root.insert() 
+                         
+                                #root.addInfoToDB()    
+
+        Widget:
+        MDNavigationDrawer:
+            id: nav_drawer2
+            orientation: "vertical"
+            anchor: "right"
+            #panel_color: "#eeeaea"
+            #AnchorLayout:
+            #anchor_x: "left"
+            padding: "8dp"
+            spacing: "8dp"
+            #    size_hint_y: None
+            #height: avatar.height
+                       
+                #NavigationDrawerIconButton:
+            BoxLayout:
+                padding: 10,10,10,10
+                spacing: 10
+                halign: "center"
+                size_hint: 1,0.3
+                pos_hint: {"center_x": .5, "center_y": .5}  
+                            
+                orientation: "vertical" 
+                
+                MDNavigationDrawerMenu:
+                    orientation: "vertical" 
+                    MDNavigationDrawerHeader:
+                        anchor: "center"
+                        font_name: 'arial.ttf'
+                        #title: "مرحبا بك"
+                        title_color: "#4a4939"
+                        text: "          aliaslhhry.com"
+                        spacing: "4dp"
+                        padding: "20dp", 0, 0, "56dp"
+                        orientation: "vertical"
+                        #padding: "8dp"
+                        #spacing: "15"
+                        halign: "center"
+                        AnchorLayout:
+                            anchor_x: "left"
+                            #size_hint_y: None
+                            height: avatar.height
+                            halign: "center"
+                              
+                        Image:
+                            id: avatar
+                            size_hint: None, None
+                            pos_hint: {"center_x": .50, "center_y": .5}
+                            size: "56dp", "56dp"
+                            source: "data/logo/kivy-icon-256.png"
+                            halign: "center"                        
+                            spacing: "15"
+                        MDLabel:
+                            text: " alialshhry.com"
+                            font_style: "Button"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            halign: "center"    
+                            spacing: "15"
+                        MDLabel:
+                            text: "pythonshehri@gmail.com"
+                            font_style: "Caption"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            halign: "center"     
+                            spacing: "15"
+                    #MDNavigationDrawerLabel:
+                        #text: "Regster"
+
+                    MDNavigationDrawerItem:
+                        
+                            
+                        MDList:
+                            padding: 10,10,10,0
+                            spacing: 40
+                            halign: "center"
+                            size_hint: 1,0.3
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape('تسجيل مستخدم جديد'))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                    root.nav_drawer2.set_state("close")
+                                    app.openscreen()
+                                        #root.screen_manager.current = "scr 1"    
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' تسجيل الدخول  '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                        #root.nav_drawer.set_state("close")  
+                                    app.login()
+                                        
+                                        #root.screen_manager.current = "scr 2"
+                                        
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' تواصل معنا  '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:app.tsgeelshow()
+        

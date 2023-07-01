@@ -1,0 +1,46 @@
+#:kivy 1.8.0
+#:import arabic_reshaper arabic_reshaper
+#:import get_display bidi.algorithm.get_display
+
+MDScreen:
+    name: "per_splash"
+    MDFloatLayout:
+        md_bg_color: 41/255,135/255,168/255,1
+        spacing: 8
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     spacing: 8
+        #md_bg_color: 41/255,135/255,168/255,1
+        Image:
+            source:"images/logoali.jpg"
+            size_hint:.26,.26
+            pos_hint:{"center_x":.5,"center_y":.7}
+            canvas.before:
+                Color: 
+                    rgb: 1,1,1,1
+                    Ellipse:
+                        size: 130,130
+                        pos: 110,250
+        Label:
+            text: get_display(arabic_reshaper.reshape(' برمجة علي الشهري '))  
+            pos_hint:{"center_x":.5,"center_y":.6}
+            haling: "center"
+            theme_text_color: "Custom"
+            text_color:1,1,1,1
+            font_size: "20sp"
+            font_name:'arial.ttf'
+        Label:
+            text: 'alialshhry.com'                
+            pos_hint:{"center_x":.5,"center_y":.5}
+            haling: "center"
+            theme_text_color: "Custom"
+            text_color:1,1,1,1
+            font_size: "38sp"
+
+        Label:
+            text: 'alyalshhry@gmail.com'                
+            pos_hint:{"center_x":.5,"center_y":.4}
+            haling: "center"
+            theme_text_color: "Custom"
+            text_color:1,1,1,1
+            font_size: "13  sp"

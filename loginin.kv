@@ -1,0 +1,101 @@
+#:import arabic_reshaper arabic_reshaper
+#:import get_display bidi.algorithm.get_display
+<logininScreen>
+    user: user
+    passw: passw
+    MDScreen:
+    Screen:           
+        name: "loginin"
+        BoxLayout:
+            orientation: 'vertical'
+            MDTopAppBar:
+                title: 'alialshhry.com'
+                anchor_title: "left"
+                padding:10,10
+                font_name:'arial.ttf'
+                left_action_items: [["menu", lambda x:nav_drawer2.set_state("open")  ]]
+                pos_hint:{"center_x":.5,"center_y":.2}
+                right_action_items:
+                    [
+                    ["dots-vertical", lambda x: nav_drawer2.set_state("open")],
+                    #["clock", lambda x: app.callback()]
+                    ["lock", lambda x: app.callback_close()]
+                    ]
+            MDLabel:        
+        
+                         
+        
+    MDLabel:
+        text:''
+    BoxLayout:
+        size_hint:None,None
+        size: 320,320
+        pos_hint:{"center_x":.5,"center_y":.5}
+        elevation:1
+        #md_bg_color: 40/255,130/255,168/255,1
+        padding: ('20dp', '20dp', '20dp', '20dp')
+        spacing: 5
+        orientation: 'vertical'  
+        
+        Image:
+            source: 'images/logoali.jpg'
+            size_hint: 20,20
+            pos_hint: {"center_x": .5, "center_y": .5}
+            #angle_start: 0
+            #angle_end: 360
+            #halign:"center"
+            #size: self.texture_size
+            #height:"30dp"
+            #width:"30dp"
+
+        MDLabel:
+            padding:10,10
+            text: get_display(arabic_reshaper.reshape('البريد الالكتروني/اسم المستخدم '))    
+            font_name:'arial.ttf'
+            halign: "center"                   #text:'علي'    
+        MDTextField:
+            id:user
+            pos_hint: {"center_x": .5, "center_y": .5}
+            #hint_text: "Enter email"
+            #mode: "rectangle"
+            icon_right: "email"
+            icon_left: "email"
+            color_active: 1, 1, 1, 1
+            icon_right_color: app.theme_cls.primary_color
+        MDLabel:
+            text: get_display(arabic_reshaper.reshape(' كلمة المرور '))    
+            font_name:'arial.ttf'
+            halign: "center"                   #text:'علي'    
+                        
+        MDTextField:
+            id:passw
+            pos_hint: {"center_x": .5, "center_y": .5}
+            #hint_text: "Enter Passowrd"
+            #mode: "rectangle"
+            
+            #size: self.texture_size
+            height:30
+            icon_right: "eye-off"
+            password:True
+            icon_left: "eye-off"
+            color_active: 1, 1, 1, 1
+            icon_right_color: app.theme_cls.primary_color    
+            #on_press: self.icon = "eye" if self.icon == "eye-off" else "eye-off" passw.password = False if passw.password is True else True
+        MDRoundFlatIconButton:
+            text:get_display(arabic_reshaper.reshape('دخول  '))
+            font_name:'arial.ttf'
+            #text_color: 0, 0, 1, 1
+            #md_bg_color: 1, 1, 0, 1     
+            pos_hint: {"center_x": .5, "center_y": .5}
+            on_press: 
+                root.login_button_action()    
+        MDLabel:
+            id: w1    
+            pos_hint: {"center_x": .5, "center_y": .5}
+            text: "      "
+        MDLabel:
+            id: w11    
+            pos_hint: {"center_x": .5, "center_y": .5}
+            text: "      "
+       
+        

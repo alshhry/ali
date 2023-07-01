@@ -1,0 +1,336 @@
+
+#:kivy 1.8.0
+#:import arabic_reshaper arabic_reshaper
+#:import get_display bidi.algorithm.get_display
+
+<msrofatScreen>
+    nav_drawer2:nav_drawer2
+    #raseed:raseed
+    #raseed2:raseed2
+    msg:msg
+    #usreid:usreid
+    mblgsrf:mblgsrf
+    byansrf:byansrf
+    datesrf:datesrf
+    raseedLhale:raseedLhale
+    maillabel:maillabel
+    MDScreen:
+    #name: "login"
+    #id:login_layout
+    #md_bg_color:1,1,1,1
+    Screen:           
+        name: "msrofat"    
+        BoxLayout:
+            orientation: 'vertical'
+            #padding: 20,20,20,20
+            spacing: 140
+            MDTopAppBar:
+                title: 'alialshhry.com'
+                anchor_title: "left"
+                #padding:10,10
+                font_name:'arial.ttf'
+                left_action_items: [["menu", lambda x:nav_drawer2.set_state("open")  ]]
+                pos_hint:{"center_x":.5,"center_y":.2}
+                right_action_items:
+                    [
+                    ["dots-vertical", lambda x: nav_drawer2.set_state("open")],
+                    #["clock", lambda x: app.callback()]
+                    ["lock", lambda x: app.callback_close()]
+                    ]
+            BoxLayout:
+                padding: 20,20,20,20
+                spacing: 30
+                halign: "center"
+                #size_hint: 1,0.3
+                #pos_hint: {"center_x": .5, "center_y": .0}  
+      
+                MDCard:
+                    padding: 10,20,20,20
+                    size_hint:None,None
+                    size: 320,330
+                    pos_hint:{"center_x":.5,"center_y":.0}
+                    elevation:1
+                    #md_bg_color: 40/255,130/255,168/255,1
+                    #padding: ('20dp', '20dp', '20dp', '20dp')
+                    spacing: 1   
+                    orientation: 'vertical'  
+                    BoxLayout:
+                        padding: 20,20,20,20
+                        spacing: 20
+                        halign: "center"
+                        size_hint: 1,0.3
+                        pos_hint: {"center_x": .5, "center_y": .5}  
+                        orientation: 'horizontal'  
+                        
+                        MDLabel:
+                            id: raseedLhale   
+                            #pos_hint: {"center_x": .5, "center_y": .5}
+                            #text: get_display(arabic_reshaper.reshape(' '))              
+                            halign: "center"
+                            font_name:'arial.ttf'
+                        MDLabel:
+                            id: raseedL1   
+                            #pos_hint: {"center_x": .5, "center_y": .5}
+                            text: get_display(arabic_reshaper.reshape(' الرصيد الحالي :'))              
+                            halign: "center"
+                            font_name:'arial.ttf'    
+                        
+                    MDLabel:
+                        id: raseedL   
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        #text: get_display(arabic_reshaper.reshape(' الصرف'))              
+                        halign: "center"
+                        font_name:'arial.ttf'
+                        size_hint: 1,0.3
+                    MDLabel:
+                        id: mblglable   
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        #text: get_display(arabic_reshaper.reshape('مبلغ الصرف '))              
+                        halign: "center"  
+                        font_name:'arial.ttf'  
+                        size_hint: 1,0.3
+                    MDLabel:
+                        id: mblglable   
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        text: get_display(arabic_reshaper.reshape('مبلغ الصرف '))              
+                        halign: "center"  
+                        font_name:'arial.ttf' 
+                        size_hint: 1,0.3 
+                    MDTextField:
+                        id:mblgsrf
+                        pos_hint: {"center_x": .5, "center_y": .6}
+                        hint_text: " "
+                        #mode: "rectangle"
+                        icon_right: "eye-off"
+                        #password:True
+                        icon_left: "eye-off"
+                        color_active: 1, 1, 1, 1
+                        icon_right_color: app.theme_cls.primary_color 
+                        input_type: 'number'
+                        input_filter: 'float'  
+                       
+                    MDLabel:
+                        id: datelabel   
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        text: get_display(arabic_reshaper.reshape('تاريخ الصرف '))              
+                        halign: "center"
+                        font_name:'arial.ttf'
+                        size_hint: 1,0.3
+                                                    
+                    
+                    MDTextField:
+                        id:datesrf
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        hint_text: " "
+                        #mode: "rectangle"
+                        icon_right: "eye-off"
+                        #password:True
+                        icon_left: "date"
+                        color_active: 1, 1, 1, 1
+                        icon_right_color: app.theme_cls.primary_color  
+                        readonly:'True'   
+                    Button:
+                        text:get_display(arabic_reshaper.reshape('تعديل التاريخ'))              
+                        on_press:root.show_date_picker()
+                        pos_hint: {"center_x": .5, "center_y": .5}  
+                        font_name:'arial.ttf'
+                        #pos_hint: {"center_x": .1, "center_y": .5}  
+                    MDLabel:
+                        id: byansrflabel   
+                        size_hint: 1,0.3
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        text: get_display(arabic_reshaper.reshape('تفاصيل الصرف '))              
+                        halign: "center"
+                        font_name:'arial.ttf'
+                    MDTextField:
+                        id:byansrf
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        hint_text: " "
+                        #mode: "rectangle"
+                        icon_right: "eye-off"
+                        #password:True
+                        icon_left: "eye-off"
+                        color_active: 1, 1, 1, 1
+                        icon_right_color: app.theme_cls.primary_color    
+                        #input_type: 'number'
+                        #input_filter: 'float'     
+                    MDRectangleFlatButton:
+                        text:get_display(arabic_reshaper.reshape('حفظ الصرف   '))
+                        font_name:'arial.ttf'
+                        #text_color: 0, 0, 1, 1
+                        #md_bg_color: 1, 1, 0, 1     
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        on_press: 
+                            root.addsrv()    
+                    MDLabel:
+                        id: msg   
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        text: get_display(arabic_reshaper.reshape('  '))              
+                        halign: "center"
+                        font_name:'arial.ttf'    
+                #on_press: app.update_label()    
+                
+                         
+                                #root.addInfoToDB()    
+
+            Widget:
+        MDNavigationDrawer:
+            id: nav_drawer2
+            orientation: "vertical"
+            anchor: "right"
+            #panel_color: "#eeeaea"
+            #AnchorLayout:
+            #anchor_x: "left"
+            padding: "8dp"
+            spacing: "8dp"
+            #    size_hint_y: None
+            #height: avatar.height
+                       
+                #NavigationDrawerIconButton:
+            BoxLayout:
+                padding: 10,10,10,10
+                spacing: 10
+                halign: "center"
+                size_hint: 1,0.3
+                pos_hint: {"center_x": .5, "center_y": .5}  
+                            
+                orientation: "vertical" 
+                
+                MDNavigationDrawerMenu:
+                    orientation: "vertical" 
+                    MDNavigationDrawerHeader:
+                        anchor: "center"
+                        font_name: 'arial.ttf'
+                        #title: "مرحبا بك"
+                        title_color: "#4a4939"
+                        text: "          alialshhry.com"
+                        spacing: "4dp"
+                        padding: "20dp", 0, 0, "56dp"
+                        orientation: "vertical"
+                        #padding: "8dp"
+                        #spacing: "15"
+                        halign: "center"
+                        AnchorLayout:
+                            anchor_x: "left"
+                            #size_hint_y: None
+                            height: avatar.height
+                            halign: "center"
+                              
+                        Image:
+                            id: avatar
+                            size_hint: None, None
+                            pos_hint: {"center_x": .50, "center_y": .5}
+                            size: "56dp", "56dp"
+                            source: "data/logo/kivy-icon-256.png"
+                            halign: "center"                        
+                            spacing: "15"
+                        MDLabel:
+                            id:maillabel
+                            text: "KivyMD library"
+                            font_style: "Button"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            halign: "center"    
+                            spacing: "15"
+                        MDLabel:
+                            text: "kivydevelopment@gmail.com"
+                            font_style: "Caption"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            halign: "center"     
+                            spacing: "15"
+                    #MDNavigationDrawerLabel:
+                        #text: "Regster"
+
+                    MDNavigationDrawerItem:
+                        
+                            
+                        MDList:
+                            padding: 10,10,10,0
+                            spacing: 40
+                            halign: "center"
+                            size_hint: 1,0.3
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape('تعديل الملف الشخصي  '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                    root.nav_drawer2.set_state("close")
+                                    app.openscreen()
+                                        #root.screen_manager.current = "scr 1"    
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' تسجيل الدخول  '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                        #root.nav_drawer.set_state("close")  
+                                    app.login()
+                                    nav_drawer2.set_state("close")    
+                                        #root.screen_manager.current = "scr 2"
+                                        
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' الاعدادات   '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+
+                                    nav_drawer2.set_state("close")    
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' ابدأ الصرف   '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                    root.nav_drawer2.set_state("close")
+                                    app.srfshow()
+        
+        
+
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' الرصيد الافتتاحي   '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                    root.nav_drawer2.set_state("close") 
+                                    app.raseedstart()
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' ابدأ الصرف    '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:
+                                    app.srfshow()        
+                                    root.nav_drawer2.set_state("close")
+                            MDRoundFlatIconButton:
+                                text: get_display(arabic_reshaper.reshape(' تواصل معنا  '))
+                                icon: "android"
+                                size_hint: 1,0.3
+                                text_color: "black"
+                                icon: "language-python"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                                font_name: 'arial.ttf' 
+                                on_press:app.tsgeelshow()
+                 
